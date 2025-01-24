@@ -27,7 +27,6 @@ jobs:
             sudo ./sam-installation/install
           else
             echo "SAM CLI is already installed. Updating..."
-            sudo sam --update
           fi
             sam --version
 
