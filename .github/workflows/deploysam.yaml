@@ -53,4 +53,5 @@ jobs:
             --stack-name lambdawithsam \
             --capabilities CAPABILITY_IAM \
             --no-fail-on-empty-changeset \
-            --resolve-image-repos
+            --resolve-image-repos \
+            --no-confirm-changeset
