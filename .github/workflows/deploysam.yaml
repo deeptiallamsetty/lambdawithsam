@@ -53,4 +53,4 @@ jobs:
             --stack-name lambdawithsam \
             --capabilities CAPABILITY_IAM \
             --no-fail-on-empty-changeset
-            --image-repositories 982534355171.dkr.ecr.us-east-1.amazonaws.com/lambdawithsam:latest
+            --image-repositories 982534355171.dkr.ecr.us-east-1.amazonaws.com/lambdawithsam
