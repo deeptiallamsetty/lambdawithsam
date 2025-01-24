@@ -1,0 +1,85 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  LambdaWithSamFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageUri: 982534355171.dkr.ecr.us-east-1.amazonaws.com/lambdawithsam:latest  # Replace with your ECR image URI
+      MemorySize: 512
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Environment:
+        Variables:
+          DATABASE_URL: "mysql+pymysql://admin:admin123@terraform-20250123081806931800000001.cxac8gmue0ap.us-east-1.rds.amazonaws.com:3306/flaskdb"
+          JWT_SECRET_KEY: "123456"
+          # DATABASE_URL: !Ref DatabaseURL
+          # JWT_SECRET_KEY: !Ref JWTSecretKey
+      Events:
+        TestApi:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+            RestApiId: !Ref ApiGateway
+        PostRefreshApi:
+          Type: Api
+          Properties:
+            Path: /refresh
+            Method: POST
+            RestApiId: !Ref ApiGateway    
+        PostLoginApi:
+          Type: Api
+          Properties:
+            Path: /login
+            Method: POST
+            RestApiId: !Ref ApiGateway    
+        GetUserApi:
+          Type: Api
+          Properties:
+            Path: /protected
+            Method: GET
+            RestApiId: !Ref ApiGateway    
+        GetAnyApi:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            RestApiId: !Ref ApiGateway    
+        CreateTaskApi:
+          Type: Api
+          Properties:
+            Path: /todo
+            Method: POST
+            RestApiId: !Ref ApiGateway    
+        GetTaskListApi:
+          Type: Api
+          Properties:
+            Path: /todo
+            Method: GET
+            RestApiId: !Ref ApiGateway    
+        UpdateTaskApi:
+          Type: Api
+          Properties:
+            Path: /todo/{task_id}
+            Method: PUT
+            RestApiId: !Ref ApiGateway    
+        DeleteTaskApi:
+          Type: Api
+          Properties:
+            Path: /todo/{task_id}
+            Method: DELETE
+            RestApiId: !Ref ApiGateway                          
+
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Dev
+# Parameters:
+#   DatabaseURL:
+#     Type: String
+#     Description: "mysql+pymysql://admin:admin123@terraform-20250123081806931800000001.cxac8gmue0ap.us-east-1.rds.amazonaws.com:3306/flaskdb"
+#   JWTSecretKey:
+#     Type: String
+#     Description: "123456"
