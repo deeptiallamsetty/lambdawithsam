@@ -5,9 +5,9 @@
   502  docker build -t db-lambda .
   503  docker build -t sampleecr2 .
   504  aws ecr create-repository --repository-name sampleecr2
-  505  docker tag sampleecr2:latest 982534355171.dkr.ecr.us-east-1.amazonaws.com/sampleecr2:latest
+  505  docker tag lambdawithsam:latest 982534355171.dkr.ecr.us-east-1.amazonaws.com/lambdawithsam:latest
        aws ecr get-login-password --region us-eat-1 | docker login --username AWS --password-stdin 982534355171.dkr.ecr.us-east-1.amazonaws.com
-  506  docker push 982534355171.dkr.ecr.us-east-1.amazonaws.com/sampleecr2:latest
+  506  docker push 982534355171.dkr.ecr.us-east-1.amazonaws.com/lambdawithsam:latest
   507  npm install -g serverless
   508  npm install serverless-wsgi serverless-python-requirements
   509  serverless deploy

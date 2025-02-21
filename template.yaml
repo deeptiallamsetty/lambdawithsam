@@ -22,55 +22,64 @@ Resources:
           Properties:
             Path: /
             Method: GET
-            RestApiId: !Ref ApiGateway
+            RestApiId: 
+              Ref: ApiGateway
         PostRefreshApi:
           Type: Api
           Properties:
             Path: /refresh
             Method: POST
-            RestApiId: !Ref ApiGateway    
+            RestApiId: 
+              Ref: ApiGateway    
         PostLoginApi:
           Type: Api
           Properties:
             Path: /login
             Method: POST
-            RestApiId: !Ref ApiGateway    
+            RestApiId: 
+              Ref: ApiGateway    
         GetUserApi:
           Type: Api
           Properties:
             Path: /protected
             Method: GET
-            RestApiId: !Ref ApiGateway    
+            RestApiId: 
+              Ref: ApiGateway    
         GetAnyApi:
           Type: Api
           Properties:
             Path: /{proxy+}
             Method: ANY
-            RestApiId: !Ref ApiGateway    
+            RestApiId: 
+              Ref: ApiGateway    
         CreateTaskApi:
           Type: Api
           Properties:
             Path: /todo
             Method: POST
-            RestApiId: !Ref ApiGateway    
+            RestApiId: 
+              Ref: ApiGateway    
         GetTaskListApi:
           Type: Api
           Properties:
             Path: /todo
             Method: GET
-            RestApiId: !Ref ApiGateway    
+            RestApiId: 
+              Ref: ApiGateway    
         UpdateTaskApi:
           Type: Api
           Properties:
             Path: /todo/{task_id}
             Method: PUT
-            RestApiId: !Ref ApiGateway    
+            RestApiId: 
+              Ref: ApiGateway    
         DeleteTaskApi:
           Type: Api
           Properties:
             Path: /todo/{task_id}
             Method: DELETE
-            RestApiId: !Ref ApiGateway                          
+            RestApiId: 
+              Ref: ApiGateway                          
 
   ApiGateway:
     Type: AWS::Serverless::Api
